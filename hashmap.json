@@ -1,61 +1,61 @@
 {
-    "0": {
+    "1": {
         "name": "Pepper_bell__Bacterial_spot",
         "treatments": ["Remove infected leaves", "Avoid overhead watering", "Use copper-based fungicides"]
     },
-    "1": {
+    "2": {
         "name": "Tomato_Bacterial_spot",
         "treatments": ["Remove infected leaves", "Avoid overhead watering", "Apply copper-based fungicides"]
     },
-    "2": {
+    "3": {
         "name": "Tomato_Late_blight",
         "treatments": ["Remove affected plants", "Apply fungicides", "Practice crop rotation"]
     },
-    "3": {
-        "name": "Potato___healthy",
-        "treatments": []
-    },
     "4": {
+        "name": "Potato___healthy",
+        "treatments": ["no treatment needed"]
+    },
+    "5": {
         "name": "Potato___Early_blight",
         "treatments": ["Remove infected leaves", "Apply fungicides", "Improve soil drainage"]
     },
-    "5": {
+    "6": {
         "name": "Tomato_Tomato_YellowLeaf_Curl_Virus",
         "treatments": ["Remove and destroy infected plants", "Use insecticides to control vector populations", "Grow resistant varieties"]
     },
-    "6": {
+    "7": {
         "name": "Tomato__Target_Spot",
         "treatments": ["Remove infected leaves", "Apply fungicides", "Ensure good air circulation"]
     },
-    "7": {
-        "name": "Pepper_bell__healthy",
-        "treatments": []
-    },
     "8": {
+        "name": "Pepper_bell__healthy",
+        "treatments": ["no treatment needed"]
+    },
+    "9": {
         "name": "Tomato_Leaf_Mold",
         "treatments": ["Improve air circulation", "Apply fungicides", "Practice crop rotation"]
     },
-    "9": {
-        "name": "Tomato_healthy",
-        "treatments": []
-    },
     "10": {
+        "name": "Tomato_healthy",
+        "treatments": ["no treatment needed"]
+    },
+    "11": {
         "name": "Tomato_Spider_mites_Two_spotted_spider_mite",
         "treatments": ["Use miticides", "Introduce predatory insects", "Regularly rinse plants with water"]
     },
-    "11": {
+    "12": {
         "name": "Tomato_Early_blight",
         "treatments": ["Apply fungicides", "Remove infected plant parts", "Improve soil drainage and air circulation"]
     },
-    "12": {
+    "13": {
         "name": "Potato___Late_blight",
         "treatments": ["Apply fungicides", "Practice crop rotation", "Destroy infected plants"]
     },
-    "13": {
+    "14": {
         "name": "Tomato__Tomato_mosaic_virus",
         "treatments": ["Remove infected plants", "Disinfect gardening tools", "Use virus-free seeds"]
     },
-    "14": {
+    "15": {
         "name": "Tomato_Septoria_leaf_spot",
         "treatments": ["Remove infected leaves", "Apply fungicides", "Ensure good air circulation and soil drainage"]
     }
