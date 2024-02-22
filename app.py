@@ -72,8 +72,10 @@ def predict_classify():
         info = your_hashmap[index_str]
         print(info , '    disease found')
         # Return the result
-        return render_template('results.html',result_data = info)
-
+        if index_str < 1 or index_str>15 :
+            return render_template('not-found.html')
+        else:
+            return render_template('results.html',result_data = info)
 def prepare_image(image, target_size):
     if image.mode != "RGB":
         image = image.convert("RGB")
