@@ -6,6 +6,7 @@ import io
 import json
 from werkzeug.utils import secure_filename
 from tensorflow.keras.preprocessing import image
+import tensorflow as tf
 from flask_cors import CORS
 app = Flask(__name__)
 with open('hashmap.json', 'r') as file:
@@ -14,8 +15,27 @@ with open('hashmap.json', 'r') as file:
 CORS(app, resources={r"/predict-classify": {"origins": "*"}}) 
 
 # Load your trained model
-MODEL_PATH = 'disease_detection.h5'
-model = load_model(MODEL_PATH)
+# MODEL_PATH = 'disease_classification.h5'
+# model = load_model(MODEL_PATH)
+model = tf.keras.models.load_model('disease_detection.h5')
+
+image_shape = (256, 256)
+
+# Function to preprocess the image
+def preprocess_image(img_path):
+    img = image.load_img(img_path, target_size=image_shape)
+    img_array = image.img_to_array(img)
+    img_array = np.expand_dims(img_array, axis=0)  # Expand dimensions to create batch dimension
+    img_array /= 255.0  # Normalize pixel values
+    return img_array
+
+# Function to make predictions
+def predict_disease(image_path):
+    preprocessed_image = preprocess_image(image_path)
+    prediction = model.predict(preprocessed_image)
+    return prediction
+
+
 
 def prepare_image(img, target_size):
     """Preprocess the image for model prediction."""
@@ -57,22 +77,30 @@ def predict_classify():
         return jsonify({'error': 'No selected file'}), 400
     if file:
         # Read the image file to PIL Image
-        image = Image.open(io.BytesIO(file.read()))
-
+        img_path = 'temp_image.jpg'
+        file.save(img_path)
+        # Make prediction
+        predictions = predict_disease(img_path)
+        # image = Image.open(io.BytesIO(file.read()))
         # Preprocess the image and prepare it for classification
-        processed_image = prepare_image(image, target_size=(256, 256))  # Adjust target_size as per your model's requirement
+        # processed_image = preprocess_image(file.read())  # Adjust target_size as per your model's requirement
 
         # Predict
-        predictions = model.predict(processed_image)
+        # predictions = model.predict(processed_image)
+        print(predictions)
+        if type(predictions[0]) == list:
+            predictions = predictions[0]
         predicted_class = np.argmax(predictions, axis=1)
         print('PredictedClass', predicted_class)
 
         # get info from hashmap
         index_str = str(predicted_class[0])
+        
         info = your_hashmap[index_str]
         print(info , '    disease found')
         # Return the result
-        if index_str < 1 or index_str>15 :
+        print(index_str)
+        if int(index_str) < 1 or int(index_str) >15 :
             return render_template('not-found.html')
         else:
             return render_template('results.html',result_data = info)
